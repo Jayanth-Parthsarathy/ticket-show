@@ -9,7 +9,8 @@ const getShows = asyncHandler(async (req, res) => {
 });
 
 const getShow = asyncHandler(async (req, res) => {
-  res.send("Getting a show");
+  const show = await Show.findById(req.params.id);
+  res.send(show);
 });
 
 const createShow = asyncHandler(async (req, res) => {
@@ -50,7 +51,8 @@ const deleteShow = asyncHandler(async (req, res) => {
 const bookTicket = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   const bookedShow = await Show.findById(req.params.id);
-  const ticket = await new Ticket({ user, show: bookedShow });
+  const venue = await Venue.findById(req.params.venueid);
+  const ticket = await new Ticket({ user, show: bookedShow, venue });
   const newTicket = await ticket.save();
   let userUpdate = await User.findByIdAndUpdate(req.user._id, {
     $push: { tickets: newTicket },
@@ -60,17 +62,29 @@ const bookTicket = asyncHandler(async (req, res) => {
       tickets: newTicket,
     },
   });
+  let venueUpdate = await Venue.findByIdAndUpdate(req.params.venueid, {
+    $push: {
+      tickets: newTicket,
+    },
+  });
   userUpdate = await User.findById(req.user._id);
   showUpdate = await Show.findById(req.params.id);
+  venueUpdate = await Venue.findById(req.params.venueid);
   res.status(201).send({
     user: {
+      username: userUpdate.username,
       userid: userUpdate._id,
       tickets: userUpdate.tickets,
     },
     ticket: newTicket._id,
     show: {
+      showname: showUpdate.name,
       showid: showUpdate._id,
       tickets: showUpdate.tickets,
+    },
+    venue: {
+      venuename: venueUpdate.name,
+      tickets: venueUpdate.tickets,
     },
   });
 });

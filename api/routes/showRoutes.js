@@ -18,5 +18,5 @@ app.post("/", checkAdmin, createShow);
 app.post("/:id", checkAdmin, updateShow);
 app.delete("/:id", checkAdmin, deleteShow);
 app.post("/:id/addVenue", checkAdmin, addVenue);
-app.post("/:id/bookTicket", protect, bookTicket);
+app.post("/:venueid/:id/bookTicket", protect, bookTicket);
 module.exports = app;

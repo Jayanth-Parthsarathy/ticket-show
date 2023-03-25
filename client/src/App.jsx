@@ -6,10 +6,13 @@ import VenueForm from './pages/VenueForm'
 import RegistrationForm from "./pages/RegistrationForm";
 import AdminDashBoard from "./pages/AdminDashBoard"
 import ShowForm from "./pages/ShowForm"
+import Bookings from "./pages/Bookings"
 import ShowEditForm from "./pages/ShowEditForm"
 import { AuthContextProvider } from "./stores/AuthContext";
 import EditVenueForm from "./pages/EditVenueForm";
+import Success from "./pages/Success";
 import Welcome from "./pages/Welcome";
+import BookTicket from "./pages/BookTicket";
 function App() {
 
   return (
@@ -27,7 +30,10 @@ function App() {
               <Route path="/admin/addVenue" element={<VenueForm />} />
               <Route path="/admin/addShow" element={<ShowForm />} />
               <Route path="/admin/editShow" element={<ShowEditForm />} />
+              <Route path="/user/book" element={<BookTicket />} />
               <Route  path="/admin/editVenue" element={<EditVenueForm />} />
+              <Route path="/user/success" element={<Success />} />
+              <Route path="/user/booking" element = {<Bookings />} />
             </Routes>
           </div>
         </AuthContextProvider>
