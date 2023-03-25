@@ -10,6 +10,7 @@ function ShowEditForm() {
   const {show, changeShow, token, isAdmin} = useContext(AuthContext)
   const [name, setName] = useState(show.name);
   const [startTime, setStartTime] = useState(show.startTime.toString().slice(0, -8));
+  const [deleteMsg, setDeleteMsg] = useState(null)
   const [endTime, setEndTime] = useState(show.endTime.toString().slice(0, -8));
   const [price, setPrice] = useState(show.ticketPrice);
   const [tags, setTags] = useState(show.tags);
@@ -64,14 +65,23 @@ function ShowEditForm() {
   }
   }
 
-
+  const deleteShow = async(id)=>{
+    const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    await axios.delete(`shows/${id}`, {headers})
+    .then(res=>console.log(res)).catch(err=>console.log(err))
+    changeShow({})
+    navigate("/admin")
+  }
 
 
 
 
  return (
   <div>
-    {isAdmin?(<form onSubmit={handleSubmit}>
+    {isAdmin?(<><form onSubmit={handleSubmit}>
       <label>
         Name:
         <input type="text" value={name} onChange={handleNameChange} required />
@@ -93,7 +103,10 @@ function ShowEditForm() {
         <input type="text" value={tags.join(',')} onChange={handleTagsChange} />
       </label>
       <button type="submit">Update Show</button>
-    </form>):(<div className='text-red-700 text-xl'>You are not an admin</div>)}
+    </form>
+    <button onClick={()=>{setDeleteMsg(`Do you want to delete ${show.name}`)}}>Delete</button>
+    {deleteMsg?(<button onClick={()=>deleteShow(show._id)}>{deleteMsg}</button>):(<div></div>)}
+    </>):(<div className='text-red-700 text-xl'>You are not an admin</div>)}
   </div>
   );
 };

@@ -31,6 +31,7 @@ function AdminVenue() {
         const url = `venues/${id}`
         await axios.delete(url, {headers}).then(res=>console.log(res)).catch(err=>console.log(err))
         getVenues()
+        setDeleteConfirm(null)
     }
 
   return (

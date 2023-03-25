@@ -43,7 +43,8 @@ const updateShow = asyncHandler(async (req, res) => {
 });
 
 const deleteShow = asyncHandler(async (req, res) => {
-  res.send("Deleting a show");
+  const show = await Show.findByIdAndDelete(req.params.id);
+  res.json(show);
 });
 
 const bookTicket = asyncHandler(async (req, res) => {
