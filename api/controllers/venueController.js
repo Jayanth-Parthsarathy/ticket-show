@@ -22,7 +22,8 @@ const updateVenue = asyncHandler(async (req, res) => {
 });
 
 const deleteVenue = asyncHandler(async (req, res) => {
-  res.send("Deleting a venue");
+  const deletedVenue = await Venue.findByIdAndDelete(req.params.id);
+  res.send(deletedVenue);
 });
 
 const displayShows = asyncHandler(async (req, res) => {

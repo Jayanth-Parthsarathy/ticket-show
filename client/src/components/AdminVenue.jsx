@@ -7,24 +7,31 @@ import { AuthContext } from '../stores/AuthContext'
 
 function AdminVenue() {
     const {changeVenue} = useContext(AuthContext)
+    const [deleteConfirm, setDeleteConfirm] = useState(null)
+    const [venuetoDelete, setVenuetoDelete] = useState({})
     const [useForm, setUseForm] = useState(false)
+    const {token}= useContext(AuthContext)
     const navigate = useNavigate()
   const [venues, setVenues] = useState([])
 
     const getVenues = async ()=>{
-            try{
-                const response = await axios.get("/venues")
-                setVenues(response.data)
-            }
-            catch(error){
-                console.error(error);
-            }
+        const response = await axios.get("/venues")
+        setVenues(response.data)
     }
 
     useEffect(() => {
         getVenues();
     }, [])
 
+      const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    const deleteVenue = async (id)=>{
+        const url = `venues/${id}`
+        await axios.delete(url, {headers}).then(res=>console.log(res)).catch(err=>console.log(err))
+        getVenues()
+    }
 
   return (
     <div className="venues-container">
@@ -36,16 +43,21 @@ function AdminVenue() {
                 ):(
                     <div></div>
                 )}
+
                 <div className="controls flex gap-4">
                     <button className="add-show" onClick={()=>{changeVenue(venue._id); navigate("/admin/addShow")}}>+</button>
                     <button className="edit">Edit</button>
-                    <button className="delete">Delete</button>
+                    <button className="delete" onClick={()=>{
+                        setDeleteConfirm(`Do you really want to delete ${venue.name}`);
+                        setVenuetoDelete(venue)
+                    }}>Delete</button>
                 </div>
             </div>
         ))}
+        <button onClick={()=>deleteVenue(venuetoDelete._id)}>{deleteConfirm}</button>
         <button className="add-venue" onClick={()=>{navigate("/admin/addVenue")}}>+</button>
     </div>
   )
 }
 
-export default AdminVenue
+export default AdminVenue;
