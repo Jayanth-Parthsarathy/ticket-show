@@ -29,14 +29,21 @@ function Show(props) {
 
 
   return (
-    <div className='shows--list'>
+     <ul className="divide-y divide-gray-200">
         {shows.map(show=>(
-            <div key={show._id} className='show--contaner'>
-                {show.name} <span>{show.startTime}</span>
-                <button onClick={()=>bookTicket(props.venue, show)}>Book</button>
-            </div>
+            <li key={show.id} className="py-2">
+                <div className="flex items-center justify-between">
+                    <div className="flex flex-col">
+                        <span className="font-bold">{show.name}</span>
+                        <span className="text-gray-600 text-sm">Start: {new Date(show.startTime).toLocaleString()}</span>
+                        <span className="text-gray-600 text-sm">End: {new Date(show.endTime).toLocaleString()}</span>
+                        
+                    </div>
+                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" onClick={()=>bookTicket(props.venue, show)}>Book</button>
+                </div>
+            </li>
         ))}
-    </div>
+    </ul>
   )
 }
 

@@ -58,31 +58,84 @@ const handleSubmit = async(e)=>{
 }
 
  return (
-  <div>
-    {isAdmin?(<form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={handleNameChange} required />
-      </label>
-      <label>
-        Start Time:
-        <input type="datetime-local" value={startTime} onChange={handleStartTimeChange} required />
-      </label>
-      <label>
-        End Time:
-        <input type="datetime-local" value={endTime} onChange={handleEndTimeChange} required />
-      </label>
-      <label>
-        Price:
-        <input type="number" value={price} onChange={handlePriceChange} required />
-      </label>
-      <label>
-        Tags (separated by commas):
-        <input type="text" value={tags.join(',')} onChange={handleTagsChange} />
-      </label>
-      <button type="submit">Create Show</button>
-    </form>):(<div className='text-red-700 text-xl'>You are not an admin</div>)}
-  </div>
+  <div className="p-4 bg-gray-100">
+  {isAdmin ? (
+    <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
+      <div className="mb-4">
+        <label htmlFor="name" className="block font-medium mb-2">
+          Name:
+        </label>
+        <input
+          id="name"
+          type="text"
+          value={name}
+          onChange={handleNameChange}
+          required
+          className="w-full border border-gray-400 p-2 rounded-lg focus:outline-none focus:border-blue-500"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="startTime" className="block font-medium mb-2">
+          Start Time:
+        </label>
+        <input
+          id="startTime"
+          type="datetime-local"
+          value={startTime}
+          onChange={handleStartTimeChange}
+          required
+          className="w-full border border-gray-400 p-2 rounded-lg focus:outline-none focus:border-blue-500"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="endTime" className="block font-medium mb-2">
+          End Time:
+        </label>
+        <input
+          id="endTime"
+          type="datetime-local"
+          value={endTime}
+          onChange={handleEndTimeChange}
+          required
+          className="w-full border border-gray-400 p-2 rounded-lg focus:outline-none focus:border-blue-500"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="price" className="block font-medium mb-2">
+          Price:
+        </label>
+        <input
+          id="price"
+          type="number"
+          value={price}
+          onChange={handlePriceChange}
+          required
+          className="w-full border border-gray-400 p-2 rounded-lg focus:outline-none focus:border-blue-500"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="tags" className="block font-medium mb-2">
+          Tags (separated by commas):
+        </label>
+        <input
+          id="tags"
+          type="text"
+          value={tags.join(',')}
+          onChange={handleTagsChange}
+          className="w-full border border-gray-400 p-2 rounded-lg focus:outline-none focus:border-blue-500"
+        />
+      </div>
+      <button
+        type="submit"
+        className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600"
+      >
+        Create Show
+      </button>
+    </form>
+  ) : (
+    <div className="text-red-700 text-xl">You are not an admin</div>
+  )}
+</div>
   );
 };
 

@@ -16,9 +16,10 @@ function Venue() {
         getVenues();
     }, [])
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {venues.map((venue)=>(
-            <div key={venue._id}>{venue.name}
+            <div className="bg-white shadow-md rounded-md p-4" key={venue._id}>
+                <h2 className="text-xl font-bold text-gray-800 mb-2">{venue.name}</h2>
                 <Show venue = {venue} />
             </div>
         ))}

@@ -22,14 +22,22 @@ function AdminShow({venue}) {
     }, [])
     
   return (
-    <div className=''>
-        {shows.map(show=>(
-            <div key={show._id} className="">
-                <div className="show-name">{show.name}</div>
-                <button className="actions" onClick={async()=>{await changeShow(show); navigate("/admin/editShow") }}>Actions</button>
-            </div>
-        ))}
+    <div className='grid grid-cols-1 gap-4'>
+  {shows.map(show => (
+    <div key={show._id} className='flex justify-between items-center py-2 px-4 rounded-lg shadow-lg bg-white mb-4'>
+      <div className='text-lg font-medium'>{show.name}</div>
+                    <button
+                className="actions px-4 py-2 rounded-lg shadow-md bg-blue-500 text-white font-semibold hover:bg-blue-600 transition duration-200"
+                onClick={async () => {
+                  await changeShow(show);
+                  navigate('/admin/editShow');
+                }}
+              >
+                Actions
+              </button>
     </div>
+  ))}
+</div>
   )
 }
 

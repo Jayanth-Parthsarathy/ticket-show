@@ -22,8 +22,8 @@ function App() {
           <div className="app">
             <Header />
             <Routes>
+              <Route exact path="/" element={<Welcome />} />
               <Route path="/admin" element ={<AdminDashBoard />} />
-              <Route path="/" element={<Welcome />} />
               <Route path="/user" element={<UserDashboard />} />
               <Route path="/login" element={<LoginForm />} />
               <Route path="/register" element={<RegistrationForm />} />

@@ -21,7 +21,7 @@ const {userLogout} = useContext(AuthContext)
       )}
       {token && !isAdmin && (
         <div className="user--link">
-          <Link to="/user" className="text-gray-300 hover:text-white">
+          <Link to="/user" className="mx-5 text-gray-300 hover:text-white">
             User Dashboard
           </Link>
         </div>

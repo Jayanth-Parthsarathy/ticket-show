@@ -24,16 +24,23 @@ function Bookings() {
     
 
   return (
-    <div>
-    {token?(<div>Bookings:
-        <div>{tickets.map((ticket)=>(
-            <div key={ticket._id}>
-                <div>{ticket.venue.name}-{ticket.show.name}</div>
-                <div>Time: {Date(ticket.show.startTime)} - {Date(ticket.show.endTime)}</div>
-            </div>
-        ))}</div>
-    </div>):(<div>Login or register to book show</div>)}
+    <div className="border p-4 rounded-md bg-white shadow-md">
+  {token ? (
+    <div className="text-center">
+      <h2 className="text-xl font-bold mb-4">Your Bookings</h2>
+      {tickets.map((ticket) => (
+        <div key={ticket._id} className="mb-4">
+          <div className="font-medium text-lg">{ticket.venue.name} - {ticket.show.name}</div>
+          <div className="text-sm text-gray-500">Time: {new Date(ticket.show.startTime).toLocaleString()} - {new Date(ticket.show.endTime).toLocaleString()}</div>
+        </div>
+      ))}
     </div>
+  ) : (
+    <div className="text-center text-lg text-gray-500">Login or register to book a show.</div>
+  )}
+</div>
+
+
   )
 }
 

@@ -39,19 +39,17 @@ function AdminVenue() {
         {venues.map(venue=>(
             <div key={venue._id} className="venue-container">
                 <h3 className="text-xl text-bl">{venue.name}</h3>
-                {venue.shows?(
+                {venue.shows&&(
                     <AdminShow venue={venue} />
-                ):(
-                    <div></div>
                 )}
 
-                <div className="controls flex gap-4">
-                    <button className="add-show" onClick={()=>{changeVenue(venue._id); navigate("/admin/addShow")}}>+</button>
-                    <button className="edit" onClick={()=>{
+                <div className="controls my-7 flex gap-4 mt-4">
+                    <button className="add-show px-4 py-2 rounded-lg shadow-md bg-green-500 text-white font-semibold hover:bg-green-600 transition duration-200" onClick={()=>{changeVenue(venue._id); navigate("/admin/addShow")}}>Add Show</button>
+                    <button className="edit px-4 py-2 rounded-lg shadow-md bg-yellow-500 text-white font-semibold hover:bg-yellow-600 transition duration-200" onClick={()=>{
                         changeVenue(venue);
                         navigate("/admin/editVenue")
                     }}>Edit</button>
-                    <button className="delete" onClick={()=>{
+                    <button className="delete px-4 py-2 rounded-lg shadow-md bg-red-500 text-white font-semibold hover:bg-red-600 transition duration-200" onClick={()=>{
                         setDeleteConfirm(`Do you really want to delete ${venue.name}`);
                         setVenuetoDelete(venue)
                     }}>Delete</button>
@@ -59,7 +57,7 @@ function AdminVenue() {
             </div>
         ))}
         <button onClick={()=>deleteVenue(venuetoDelete._id)}>{deleteConfirm}</button>
-        <button className="add-venue" onClick={()=>{navigate("/admin/addVenue")}}>+</button>
+        <button className="add-venue add-venue absolute bottom-0 right-0 mb-8 mr-8 px-4 py-2 rounded-lg shadow-md bg-green-500 text-white font-semibold hover:bg-green-600 transition duration-200" onClick={()=>{navigate("/admin/addVenue")}}>Add Venue</button>
     </div>
   )
 }

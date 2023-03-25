@@ -40,33 +40,34 @@ function VenueForm() {
     }
 
    return (
-    <div className='venue-form'>
-        {isAdmin?(
+    <div className='venue-form bg-white rounded-md shadow-md p-6'>
+  {isAdmin ? (
+    <div>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-            <form onSubmit={handleSubmit}>
-                <div className="name">
-                    <label htmlFor="name">Venue Name</label>
-                    <input id='name' type="text" value={name} placeholder='Enter venue name' onChange={(e)=>setName(e.target.value)} />
-                </div>
-                <div className="place">
-                    <label htmlFor="place">Place</label>
-                    <input id='place' type="text" value={place} placeholder='Enter Place' onChange={(e)=>setPlace(e.target.value)} />
-                </div>
-                <div className="location">
-                    <label htmlFor="location">Location</label>
-                    <input id='location' type="text" value={location} placeholder='Enter location' onChange={(e)=>setLocation(e.target.value)} />
-                </div>
-                <div className="capacity">
-                    <label htmlFor="capacity">Capacity</label>
-                    <input id='capacity' type="number" min={0} value={capacity} placeholder='Enter Capacity' onChange={(e)=>setCapacity(e.target.value)} />
-                </div>
-                <button type="submit">Save</button>
-            </form>
+          <label htmlFor="name" className="block font-medium">Venue Name</label>
+          <input id='name' type="text" value={name} placeholder='Enter venue name' onChange={(e) => setName(e.target.value)} className="form-input mt-1 w-full rounded-md shadow-sm" />
         </div>
-    ):(
-        <div>You are not the admin</div>
-    )}
+        <div>
+          <label htmlFor="place" className="block font-medium">Place</label>
+          <input id='place' type="text" value={place} placeholder='Enter Place' onChange={(e) => setPlace(e.target.value)} className="form-input mt-1 w-full rounded-md shadow-sm" />
+        </div>
+        <div>
+          <label htmlFor="location" className="block font-medium">Location</label>
+          <input id='location' type="text" value={location} placeholder='Enter location' onChange={(e) => setLocation(e.target.value)} className="form-input mt-1 w-full rounded-md shadow-sm" />
+        </div>
+        <div>
+          <label htmlFor="capacity" className="block font-medium">Capacity</label>
+          <input id='capacity' type="number" min={0} value={capacity} placeholder='Enter Capacity' onChange={(e) => setCapacity(e.target.value)} className="form-input mt-1 w-full rounded-md shadow-sm" />
+        </div>
+        <button type="submit" className="bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">Save</button>
+      </form>
     </div>
+  ) : (
+    <div>You are not the admin</div>
+  )}
+</div>
+
     
    )
 }
