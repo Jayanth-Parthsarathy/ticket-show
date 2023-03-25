@@ -1,0 +1,25 @@
+const express = require("express");
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
+const { errorHandler } = require("./middleware/errorMiddleware");
+const UserRouter = require("./routes/userRoutes");
+const bcrypt = require("bcrypt");
+const User = require("./models/user");
+const app = express();
+const TicketRouter = require("./routes/ticketRoutes");
+const cors = require("cors");
+const VenueRouter = require("./routes/venueRoutes");
+const ShowRouter = require("./routes/showRoutes");
+const PORT = process.env.PORT || 8001;
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://127.0.0.1:27017/");
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cors());
+app.use("/", UserRouter);
+
+app.use("/venues", VenueRouter);
+app.use("/shows", ShowRouter);
+app.use("/tickets", TicketRouter);
+app.use(errorHandler);
+app.listen(PORT, () => [console.log(`Listening on port ${PORT}`)]);
