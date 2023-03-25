@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from '../axios'
-
+import { useContext } from 'react'
+import { AuthContext } from '../stores/AuthContext'
 function AdminShow({venue}) {
+    const navigate = useNavigate()
+    const {changeShow} = useContext(AuthContext);
     const [shows, setShows] = useState([])
     
     useEffect(() => {
@@ -22,7 +26,7 @@ function AdminShow({venue}) {
         {shows.map(show=>(
             <div className="">
                 <div className="show-name">{show.name}</div>
-                <button className="actions">Actions</button>
+                <button className="actions" onClick={async()=>{await changeShow(show); navigate("/admin/editShow") }}>Actions</button>
             </div>
         ))}
     </div>

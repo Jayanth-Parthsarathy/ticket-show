@@ -49,7 +49,7 @@ const handleSubmit = async(e)=>{
       .catch(err=>console.log(err))
     }
     changeVenue('')
-    navigate("/admin/admin")
+    navigate("/admin/")
 
   }
   catch(err){

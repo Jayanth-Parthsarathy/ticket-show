@@ -3,8 +3,9 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [show, setShow] = useState('')
   const [isAdmin, setIsAdmin] = useState(false);
-  const [venue, setVenue] = useState('')
+  const [venue, setVenue] = useState({})
    const userLogin = (token, isAdmin) => {
     localStorage.setItem("token", token);
     setIsAdmin(isAdmin);
@@ -21,9 +22,12 @@ export const AuthContextProvider = ({ children }) => {
     setVenue(venue);
   }
 
+  const changeShow = (show)=>{
+    setShow(show)
+  }
 
   return (
-    <AuthContext.Provider value={{ isAdmin, token, userLogin, userLogout, venue, changeVenue}}>
+    <AuthContext.Provider value={{ isAdmin, token, userLogin, userLogout, show, changeShow, venue, changeVenue}}>
       {children}
     </AuthContext.Provider>
   );

@@ -6,6 +6,7 @@ import VenueForm from './pages/VenueForm'
 import RegistrationForm from "./pages/RegistrationForm";
 import AdminDashBoard from "./pages/AdminDashBoard"
 import ShowForm from "./pages/ShowForm"
+import ShowEditForm from "./pages/ShowEditForm"
 import { AuthContextProvider } from "./stores/AuthContext";
 import Welcome from "./pages/Welcome";
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path="/register" element={<RegistrationForm />} />
               <Route path="/admin/addVenue" element={<VenueForm />} />
               <Route path="/admin/addShow" element={<ShowForm />} />
+              <Route path="/admin/editShow" element={<ShowEditForm />} />
             </Routes>
           </div>
         </AuthContextProvider>
