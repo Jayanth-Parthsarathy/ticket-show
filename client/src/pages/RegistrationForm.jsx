@@ -40,38 +40,57 @@ const RegistrationForm = ()=>{
 
 
     return (
-    <form onSubmit={handleSubmit}>
-      {errorMessage?(<p>{errorMessage}</p>):(<p>{errorMessage}</p>)}
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
-      />
-        <label htmlFor="email">Email</label>
-        <input
+    <form onSubmit={handleSubmit} className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-bold mb-2" htmlFor="username">Username</label>
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="text"
+          id="username"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-bold mb-2" htmlFor="email">Email</label>
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="email"
             id="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
         />
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-bold mb-2" htmlFor="password">Password</label>
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="password"
+          id="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </div>
+      <div className='mb-4'>
+        <label className="block text-gray-700 font-bold mb-2" htmlFor="password2">
+          Confirm Password
+        </label>
+
         <input
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         type="password"
         id="password2"
         value={password2}
         onChange={(event) => setPassword2(event.target.value)}
-      />
+          />
+      </div>
       
-      <button type="submit">Register</button>
-      <p className='text-xl text-red-400'>{errorMessage}</p>
+    <div className="flex items-center justify-between">
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Register
+        </button>
+        <p className='text-red-400'>{errorMessage}</p>
+    </div>
     </form>
   );
 };

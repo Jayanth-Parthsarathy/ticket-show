@@ -24,13 +24,15 @@ function Bookings() {
     
 
   return (
-    <div>Bookings:
+    <div>
+    {token?(<div>Bookings:
         <div>{tickets.map((ticket)=>(
             <div key={ticket._id}>
                 <div>{ticket.venue.name}-{ticket.show.name}</div>
                 <div>Time: {Date(ticket.show.startTime)} - {Date(ticket.show.endTime)}</div>
             </div>
         ))}</div>
+    </div>):(<div>Login or register to book show</div>)}
     </div>
   )
 }

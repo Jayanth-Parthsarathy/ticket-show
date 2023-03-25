@@ -7,8 +7,6 @@ function UserDashboard() {
     <>
         <div className='venues'>
             <Venue />
-
-
             <button onClick={()=>navigate("/user/booking")}>My Bookings</button>
         </div>
     </>

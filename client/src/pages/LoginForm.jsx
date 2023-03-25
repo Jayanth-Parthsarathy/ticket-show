@@ -41,25 +41,34 @@ const LoginForm = () => {
 
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-      />
-
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
-
-      <button type="submit">Login</button>
-    </form>
+    <div className="flex bg-gray-500 items-center justify-center h-screen">
+      <form className="bg-white p-6 rounded shadow-md" onSubmit={handleSubmit}>
+        <h1 class="text-lg font-bold mb-4">Login</h1>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2" htmlFor="email">Email:</label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="text"
+            id="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block text-gray-700 font-bold mb-2" htmlFor="password">Password: </label>
+          <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="password"
+            id="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div>
+        <div className="flex justify-center">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Login</button>
+          </div>
+      </form>
+    </div>
   );
 };
 

@@ -19,7 +19,7 @@ function App() {
     <>
       <Router>
         <AuthContextProvider>
-          <div>
+          <div className="app">
             <Header />
             <Routes>
               <Route path="/admin" element ={<AdminDashBoard />} />
