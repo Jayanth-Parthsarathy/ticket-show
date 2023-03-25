@@ -1,4 +1,5 @@
 import React, {useContext, useState} from 'react'
+import axios from "../axios"
 import {AuthContext} from "../stores/AuthContext"
 import { useNavigate } from 'react-router-dom'
 const RegistrationForm = ()=>{
@@ -16,26 +17,19 @@ const RegistrationForm = ()=>{
             setErrorMessage("Passwords dont match")
             throw new Error("Passwords donot match")
         }
-        const response = await fetch("http://localhost:8001/register", {
-            method:"POST",
-            headers:{
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username,
-                email,
-                password,
-            }),
-        });
-        const {token, isAdmin} = await response.json();
-        userLogin(token, isAdmin)
-        if(isAdmin){
-          navigate("/admin")
-        }
-        else{
-          navigate("/user")
-        }
-        }
+        await axios.post("/register",{
+          username,
+          email,
+          password
+        })
+        .then((response)=>{
+          setErrorMessage(null)
+          const {token, isAdmin} =  response.data;
+          userLogin(token,isAdmin);
+          isAdmin?navigate("/admin"):navigate("/user")
+        })
+        .catch(err=>setErrorMessage("User already Exists"))
+     }
         
       catch(error){
         console.log(error);
@@ -75,8 +69,9 @@ const RegistrationForm = ()=>{
         value={password2}
         onChange={(event) => setPassword2(event.target.value)}
       />
-
+      
       <button type="submit">Register</button>
+      <p className='text-xl text-red-400'>{errorMessage}</p>
     </form>
   );
 };

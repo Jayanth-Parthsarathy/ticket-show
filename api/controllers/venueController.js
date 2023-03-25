@@ -18,7 +18,8 @@ const createVenue = asyncHandler(async (req, res) => {
 });
 
 const updateVenue = asyncHandler(async (req, res) => {
-  res.send("Updating a venue");
+  const updatedVenue = await Venue.findByIdAndUpdate(req.params.id, req.body);
+  res.json(200).send(updatedVenue);
 });
 
 const deleteVenue = asyncHandler(async (req, res) => {

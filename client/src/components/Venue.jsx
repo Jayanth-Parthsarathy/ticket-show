@@ -18,7 +18,7 @@ function Venue() {
   return (
     <div>
         {venues.map((venue)=>(
-            <div>{venue.name}
+            <div key={venue._id}>{venue.name}
                 <Show venue = {venue} />
             </div>
         ))}

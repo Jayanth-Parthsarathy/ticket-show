@@ -37,7 +37,7 @@ function AdminVenue() {
   return (
     <div className="venues-container">
         {venues.map(venue=>(
-            <div className="venue-container">
+            <div key={venue._id} className="venue-container">
                 <h3 className="text-xl text-bl">{venue.name}</h3>
                 {venue.shows?(
                     <AdminShow venue={venue} />
@@ -47,7 +47,10 @@ function AdminVenue() {
 
                 <div className="controls flex gap-4">
                     <button className="add-show" onClick={()=>{changeVenue(venue._id); navigate("/admin/addShow")}}>+</button>
-                    <button className="edit">Edit</button>
+                    <button className="edit" onClick={()=>{
+                        changeVenue(venue);
+                        navigate("/admin/editVenue")
+                    }}>Edit</button>
                     <button className="delete" onClick={()=>{
                         setDeleteConfirm(`Do you really want to delete ${venue.name}`);
                         setVenuetoDelete(venue)

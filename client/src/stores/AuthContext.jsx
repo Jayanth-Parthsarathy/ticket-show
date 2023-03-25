@@ -3,7 +3,7 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [show, setShow] = useState('')
+  const [show, setShow] = useState({})
   const [isAdmin, setIsAdmin] = useState(false);
   const [venue, setVenue] = useState({})
    const userLogin = (token, isAdmin) => {

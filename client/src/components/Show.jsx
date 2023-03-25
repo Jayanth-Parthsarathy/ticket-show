@@ -18,7 +18,7 @@ function Show({venue}) {
   return (
     <div className='shows--list'>
         {shows.map(show=>(
-            <div className='show--contaner'>
+            <div key={show._id} className='show--contaner'>
                 {show.name} <span>{show.startTime}</span>
             </div>
         ))}

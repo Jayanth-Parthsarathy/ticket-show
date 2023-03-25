@@ -24,7 +24,7 @@ function AdminShow({venue}) {
   return (
     <div className=''>
         {shows.map(show=>(
-            <div className="">
+            <div key={show._id} className="">
                 <div className="show-name">{show.name}</div>
                 <button className="actions" onClick={async()=>{await changeShow(show); navigate("/admin/editShow") }}>Actions</button>
             </div>
