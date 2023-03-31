@@ -1,2 +1,2 @@
 # ticket-show
-Ticket Booking App made with MongoDB, ReactJS, NodeJS, Express
+Ticket Booking App made with MongoDB, ReactJS, NodeJS, Express.
